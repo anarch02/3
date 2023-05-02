@@ -1,0 +1,1 @@
+<a href="{{route($btn['route'])}}" class="{{$btn['class']}}"> {{$btn['name']}} </a>
