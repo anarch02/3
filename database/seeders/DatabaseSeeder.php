@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Group;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +20,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Subject::factory(15)->create();
         \App\Models\User::factory(500)->create();
         \App\Models\Course::factory(15)->create();
-        \App\Models\Absence::factory(756)->create();
+        \App\Models\Group::factory(10)->create();
+        \App\Models\Attendance::factory(756)->create();
+
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',

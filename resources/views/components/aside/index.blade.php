@@ -4,8 +4,8 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       @foreach($menu as $item)
-        <li class="nav-item">
-          <a class="nav-link @if($item['active']) active @endif" href="{{route($item['route'])}}">
+        <li class="nav-item @if($item['active']) active @endif">
+          <a class="nav-link " href="{{route($item['route'])}}">
             <i class="{{$item['icon']}}"></i>
             <span>{{$item['title']}}</span>
           </a>

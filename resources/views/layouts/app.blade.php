@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="Viteport" content="width=device-width, initial-scale=1">
 
+    <link href="{{Vite::asset('resourcesimg/favicon.png')}}" rel="icon">
+    <link href="{{Vite::asset('resources/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -22,13 +25,13 @@
 
     <x-aside.index></x-aside.index>
 
-    {{-- @if (Session::has('message'))
-    <div class="alert alert-danger">
-      {{$message}}
-    </div>
-    @endif --}}
+    <main id="main" class="main">
 
-    @yield('content')
+      <x-infotitle :info="$info"></x-infotitle>
+  
+      @yield('content')
+  
+    </main><!-- End #main -->  
 
   <!-- ======= Footer ======= -->
   <x-footer></x-footer>

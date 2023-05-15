@@ -3,42 +3,40 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BranchRequest;
-use App\Models\Branch;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class BranchController extends Controller
+class SubjectController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $info = [
-            'name' => 'Branch',
+            'name' => 'Subjects',
             'info_title' =>
             [
-                'branch.index' => 'Branchs',
+                'subject.index' => 'Subject',
             ],
             'create' => 
             [
-                'route' => 'branch.create',
+                'route' => 'subject.create',
                 'class' => 'btn btn-primary bi bi-plus',
-                'name' => 'New branch'
+                'name' => 'New subject'
             ],
             'table' =>
             [
-                'thead' => ['Name', 'Address', 'Action'],
-                'tbody' => ['name', 'address'],
+                'thead' => ['Name', 'Action'],
+                'tbody' => ['name'],
                 'show' => 
                 [
                     'class' => 'bi bi-eye text-secondary p-2',
-                    'route' => 'branch.show'
+                    'route' => 'subject.show'
                 ],
                 'edit' => [
                     'class' => 'bi bi-pencil-square text-secondary',
-                    'route' => 'branch.edit',
+                    'route' => 'subject.edit',
                 ],
                 'delete' => [
                     'class' => 'bi bi-trash text-danger',
@@ -51,16 +49,19 @@ class BranchController extends Controller
         return view('pages.list', 
         [
             'info' => $info,
-            'array' => Branch::orderBy('name')->paginate(25)
+            'array' => Subject::orderBy('name')->paginate(25)
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         $info = 
             [
-                'name' => 'New branch',
-                'route' => 'branch.store',
+                'name' => 'New subject',
+                'route' => 'subject.store',
                 'submit' => 'Create',
                 'inputs' => 
                 [
@@ -70,17 +71,9 @@ class BranchController extends Controller
                         'name' => 'name',
                         'type' => 'text',
                         'placeholder' => 'Please, write name of new branch'
-                    ],
-                    [
-                        'label' => 'Address',
-                        'name' => 'address',
-                        'id' => 'address',
-                        'type' => 'text',
-                        'placeholder' => 'Please, write address of new branch'
                     ]
-                    ],
+                ],
                 'selects' => []
-
             ];
 
         return view('pages.action', [
@@ -88,17 +81,12 @@ class BranchController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BranchRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        Branch::create($data);
-        
-        // return redirect(route('branch.index'))->with('message', "New branch created");
-        return response()->json(['success' => 'Success!']);
+        //
     }
 
     /**
@@ -117,7 +105,7 @@ class BranchController extends Controller
         $info = [
             'name' => 'Edit',
             'submit' => 'Save',
-            'route' => 'branch.update',
+            'route' => 'subject.update',
             'inputs' => 
             [
                 [
@@ -127,21 +115,14 @@ class BranchController extends Controller
                     'type' => 'text',
                     'placeholder' => 'Please, write name of new branch',
                     'value' => '$item->name'
-                ],
-                [
-                    'label' => 'Address',
-                    'name' => 'address',
-                    'id' => 'up_address',
-                    'type' => 'text',
-                    'placeholder' => 'Please, write address of new branch'
                 ]
-                ],
-                'selects' => []
+            ],
+            'selects' => []
 
         ];
 
         return view('pages.edit', [
-            'object' => Branch::findOrFail($id),
+            'object' => Subject::findOrFail($id),
             'info' => $info
         ]);
     }
@@ -159,8 +140,6 @@ class BranchController extends Controller
      */
     public function destroy(string $id)
     {
-        Branch::destroy($id);
-
-        return redirect(route('branch.index'))->with('message', 'Deleted');
+        //
     }
 }

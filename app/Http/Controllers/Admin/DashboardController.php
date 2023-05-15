@@ -9,6 +9,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.home');
+        $info = [
+            'name' => 'Dashbord',
+            'info_title' =>
+            [
+                'admin.dashboard' => 'Dashboard'
+            ] 
+        ];
+        return view('admin.home', [
+            'info' => $info
+        ]);
     }
 }

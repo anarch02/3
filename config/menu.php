@@ -3,8 +3,8 @@
 return[
     [
         'title' => 'Dashboard',
-        'route' => 'home',
-        'icon' => 'bi bi-house'        
+        'route' => 'admin.dashboard',
+        'icon' => 'bi bi-grid'        
     ],
     [
         'title' => 'Admin',
@@ -17,9 +17,14 @@ return[
         'icon' => 'bi bi-building'        
     ],
     [
+        'title' => 'Subjects',
+        'route' => 'subject.index',
+        'icon' => 'bi bi-building'        
+    ],
+    [
         'title' => 'Groups',
         'route' => 'group.index',
-        'icon' => 'bi bi-microsoft-teams'        
+        'icon' => 'bi bi-building'        
     ],
     [
         'title' => 'Students',

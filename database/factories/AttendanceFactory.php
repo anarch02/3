@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Group;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Absence>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Attendance>
  */
-class AbsenceFactory extends Factory
+class AttendanceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,8 @@ class AbsenceFactory extends Factory
     {
         return [
             'user_id'=>User::query()->inRandomOrder()->value('id'),
-            'absence_day' => fake()->dateTimeBetween('now', '+7 days')
+            'group_id'=>Group::query()->inRandomOrder()->value('id'),
+            'date' => fake()->dateTimeBetween('now', '+7 days')
         ];
     }
 }

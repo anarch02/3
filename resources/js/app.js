@@ -300,47 +300,42 @@ import.meta.glob([
       content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
     });
   
-    /**
-     * Initiate Bootstrap validation check
-     */
-    var needsValidation = document.querySelectorAll('.needs-validation')
-  
-    Array.prototype.slice.call(needsValidation)
-      .forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      })
-  
-    /**
-     * Initiate Datatables
-     */
-    const datatables = select('.datatable', true)
-    datatables.forEach(datatable => {
-      new simpleDatatables.DataTable(datatable);
-    })
-  
-    /**
-     * Autoresize echart charts
-     */
-    const mainContainer = select('#main');
-    if (mainContainer) {
-      setTimeout(() => {
-        new ResizeObserver(function() {
-          select('.echart', true).forEach(getEchart => {
-            echarts.getInstanceByDom(getEchart).resize();
-          })
-        }).observe(mainContainer);
-      }, 200);
-    }
-  
+    
   })();
 
 
-
+  import { Calendar } from '@fullcalendar/core';
+  import dayGridPlugin from '@fullcalendar/daygrid';
+  import timeGridPlugin from '@fullcalendar/timegrid';
+  // import '@fullcalendar/core/index';
+  // import '@fullcalendar/daygrid/index';;
+  // import '@fullcalendar/timegrid/index';
   
+  document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('attendance-calendar');
+      var students = JSON.parse(calendarEl.dataset.students);
+  
+      var events = [];
+  
+      students.forEach(function(student) {
+          student.absences.forEach(function(absence) {
+              events.push({
+                  title: student.name,
+                  start: absence.date
+              });
+          });
+      });
+  
+      var calendar = new Calendar(calendarEl, {
+          plugins: [ dayGridPlugin, timeGridPlugin ],
+          defaultView: 'dayGridMonth',
+          header: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          },
+          events: events
+      });
+  
+      calendar.render();
+  });

@@ -10,9 +10,11 @@
 
     <div class="search-bar">
     <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        {{-- <input type="text" name="query" id="search-input" placeholder="Search" title="Enter search keyword"> --}}
+        <input type="text" id="search-input" placeholder="Search...">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
+    <div id="search-results"></div>
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
@@ -169,13 +171,12 @@
 
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{Vite::asset('resources/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"> {{Auth::user()->name}} </span>
         </a><!-- End Profile Iamge Icon -->
 
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-            <h6>Kevin Anderson</h6>
-            <span>Web Designer</span>
+            <h6>{{Auth::user()->name}}</h6>
             </li>
             <li>
             <hr class="dropdown-divider">

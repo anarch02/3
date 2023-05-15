@@ -16,7 +16,10 @@ class AdminController extends Controller
     {
         $info = [
             'name' => 'Admin',
-            'route' => 'admin.index',
+            'info_title' =>
+            [
+                'admin.index' => 'Admins',
+            ],
             'create' => [
                 'route' => 'admin.create',
                 'class' => 'btn btn-primary bi bi-plus',
@@ -26,6 +29,11 @@ class AdminController extends Controller
             [
                 'thead' => ['Name', 'login', 'Action'],
                 'tbody' => ['name', 'login'],
+                'show' => 
+                [
+                    'class' => 'bi bi-eye text-secondary p-2',
+                    'route' => 'admin.show'
+                ],
                 'edit' =>[
                         'class' => 'bi bi-pencil-square text-secondary',
                         'route' => 'admin.edit',
