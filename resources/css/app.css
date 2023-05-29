@@ -5,3 +5,8 @@
 @import '../../node_modules/quill/quill.bubble.css';
 /* @import '../../node_modules/remixicon/remixicon.css'; */
 /* @import '../../node_modules/simple-datatables/style.css'; */
+
+.table-wrap {
+    width: 100%;
+    overflow:auto;
+}

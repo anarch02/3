@@ -1,33 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<table>
-    <thead>
-        <tr>
-            <th>Студент</th>
-            @foreach ($dates as $date)
-                <th>{{ $date }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($users as $user)
+<div class="table-wrap">
+    <table class="table  datatable">
+        <thead>
             <tr>
-                <td>{{ $user->name }}</td>
+                <th>Студент</th>
                 @foreach ($dates as $date)
-                    <td>
-                        @php
-                            $attendance = $user->attendances->where('date', $date)->first();
-                        @endphp
-                        @if ($attendance)
-                            отсу
-                        @else
-                            -
-                        @endif
-                    </td>
+                    <th>                
+                        {{ \Carbon\Carbon::parse($date)->format('d M') }}
+                    </th>
                 @endforeach
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    @foreach ($dates as $date)
+                        
+                            @php
+                                $attendance = $user->attendances->where('date', $date)->first();
+                            @endphp
+                            @if ($attendance)
+                            <td>
+                                <i class="bi bi-x-circle text-danger"></i>
+                            </td>
+                            @else
+                            <td><i class="bi bi-circle text-success"></i></td>
+                            @endif
+                        
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection

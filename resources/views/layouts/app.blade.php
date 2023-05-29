@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="Viteport" content="width=device-width, initial-scale=1">
 
-    <link href="{{Vite::asset('resourcesimg/favicon.png')}}" rel="icon">
+    <link href="{{Vite::asset('resources/img/favicon.png')}}" rel="icon">
     <link href="{{Vite::asset('resources/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
     <!-- CSRF Token -->
