@@ -25,10 +25,11 @@ Route::middleware('auth:admin')->group(function()
     Route::resource('user', UserController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('group', GroupController::class);
+    Route::get('/calendar/{id}', [AttendanceController::class, 'calendar'])->name('calendar'); 
+
 });
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/calendar', [AttendanceController::class, 'calendar'])->name('calendar'); 
 
 Route::fallback(function()
 {

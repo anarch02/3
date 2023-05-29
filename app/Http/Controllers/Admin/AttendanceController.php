@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
-    public function calendar()
+    public function calendar($id)
     {
         $info = [
             'name' => 'Branch',
@@ -45,13 +45,13 @@ class AttendanceController extends Controller
         ];
 
         // ini_set('memory_limit', '256M');
-        $users = User::where('group_id', '=', '2')->get();
+        $users = User::paginate(10);
         $dates = Attendance::distinct('date')->pluck('date');
 
         // dd($users, $dates);
         // $users->findOrFail(15)->at;
 
 
-        return view('pages.calendar', compact('users', 'dates'));
+        return view('pages.calendar', compact('users', 'dates', 'info'));
     }
 }
