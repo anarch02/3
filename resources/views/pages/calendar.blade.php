@@ -27,7 +27,9 @@
                                 <i class="bi bi-x-circle text-danger"></i>
                             </td>
                             @else
-                            <td><i class="bi bi-circle text-success"></i></td>
+                            <td>
+                                <i class="bi bi-circle text-success"></i>
+                            </td>
                             @endif
                         
                     @endforeach

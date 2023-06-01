@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -44,14 +45,11 @@ class AttendanceController extends Controller
             
         ];
 
-        // ini_set('memory_limit', '256M');
-        $users = User::paginate(10);
-        $dates = Attendance::distinct('date')->pluck('date');
-
-        // dd($users, $dates);
-        // $users->findOrFail(15)->at;
-
-
+        
+        
+        $users = Group::findOrFail($id)->users;
+        $dates = Attendance::where('group_id', $id)->distinct('date')->pluck('date');
+        
         return view('pages.calendar', compact('users', 'dates', 'info'));
     }
 }
