@@ -19,7 +19,7 @@ class AttendanceFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>User::query()->inRandomOrder()->value('id'),
+            // 'user_id'=>User::query()->inRandomOrder()->value('id'),
             'group_id'=>Group::query()->inRandomOrder()->value('id'),
             'date' => fake()->dateTimeBetween('now', '+7 days')
         ];

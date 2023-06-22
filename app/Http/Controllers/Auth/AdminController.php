@@ -28,6 +28,6 @@ class AdminController extends Controller
             return redirect('/admin/dashboard');
         };
 
-        return 'test';
+        return redirect()->back();
     }
 }

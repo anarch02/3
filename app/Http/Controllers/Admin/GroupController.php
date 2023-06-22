@@ -57,6 +57,8 @@ class GroupController extends Controller
                 ],
             ]
         ];
+
+        // dd(Group::findOrFail(1)->students_mount);
         
         return view('pages.list', 
         [
@@ -72,6 +74,10 @@ class GroupController extends Controller
     {
         $info = 
             [
+                'info_title' =>
+            [
+                'group.index' => 'Groups',
+            ],
                 'name' => 'New group',
                 'route' => 'group.store',
                 'submit' => 'Create',

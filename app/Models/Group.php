@@ -55,6 +55,12 @@ class Group extends Model
         return $this->belongsToMany(User::class, 'groups_users', 'group_id', 'user_id');
     }
 
+    public function students_mount(): int
+    {
+        return $this->users()->count();
+        // return $this->users()->where('role', 'student')->count();
+    }
+
     /**
      * Get the user that owns the Course
      *

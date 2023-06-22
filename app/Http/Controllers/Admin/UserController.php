@@ -62,6 +62,10 @@ class UserController extends Controller
     {
         $info = 
             [
+                'info_title' =>
+            [
+                'user.index' => 'User',
+            ],
                 'name' => 'New user',
                 'route' => 'user.store',
                 'submit' => 'Create',

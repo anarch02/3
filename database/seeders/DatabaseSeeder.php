@@ -15,14 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\AdminUser::factory(10)->create();
-        \App\Models\Branch::factory(5)->create();
-        \App\Models\Subject::factory(15)->create();
-        \App\Models\User::factory(500)->create();
-        \App\Models\Course::factory(15)->create();
-        \App\Models\Group::factory(10)->create();
-        \App\Models\Attendance::factory(200)->create();
+        \App\Models\AdminUser::factory(3)->create();
+        \App\Models\Branch::factory(2)->create();
+        \App\Models\Subject::factory(3)->create();
+        \App\Models\User::factory(50)->create();
+        \App\Models\Course::factory(3)->create();
+        \App\Models\Group::factory(5)->create();
+        \App\Models\Attendance::factory(100)->create();
 
+        $groups = Group::all();
+        $users = User::all();
+        foreach ($groups as $group) {
+            $group->users()->attach($users->random(rand(1, 5)));
+            $group->save();
+        }
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',

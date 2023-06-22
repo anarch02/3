@@ -17,7 +17,8 @@
             </td>
             @else
             <td>
-              {{$item[$td]}}
+              {{-- @dump($td) --}}
+              {{$item->$td}}
             </td>
             @endif
               
