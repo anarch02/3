@@ -21,7 +21,7 @@ class UserController extends Controller
             [
                 'user.index' => 'User',
             ],
-            'create' => 
+            'create' =>
             [
                 'route' => 'user.create',
                 'class' => 'btn btn-primary bi bi-plus',
@@ -31,7 +31,7 @@ class UserController extends Controller
             [
                 'thead' => ['Name', 'Contact', 'Action'],
                 'tbody' => ['name', 'phone_number'],
-                'show' => 
+                'show' =>
                 [
                     'class' => 'bi bi-eye text-secondary p-2',
                     'route' => 'user.show'
@@ -45,10 +45,10 @@ class UserController extends Controller
                         'route' => 'user.destroy',
                     ],
             ]
-            
+
         ];
-        
-        return view('pages.list', 
+
+        return view('pages.list',
         [
             'info' => $info,
             'array' => User::orderBy('name')->paginate(25)
@@ -60,16 +60,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        $info = 
+        $info =
             [
                 'info_title' =>
-            [
-                'user.index' => 'User',
-            ],
+                [
+                    'user.index' => 'User',
+                ],
                 'name' => 'New user',
                 'route' => 'user.store',
                 'submit' => 'Create',
-                'inputs' => 
+                'inputs' =>
                 [
                     [
                         'label' => 'Name',
@@ -100,7 +100,7 @@ class UserController extends Controller
                         'placeholder' => 'Please, write password of new user'
                     ]
                 ],
-                'selects' => 
+                'selects' =>
                 [
                     [
                         'label' => 'Branch',
@@ -119,11 +119,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
+        dd($request);
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
-        
+
         User::create($data);
 
         return redirect(route('user.idex'))->with('message', 'success');
@@ -146,7 +147,7 @@ class UserController extends Controller
             'name' => 'Edit',
             'submit' => 'Save',
             'route' => 'user.update',
-            'inputs' => 
+            'inputs' =>
             [
                 [
                     'label' => 'Name',
@@ -177,7 +178,7 @@ class UserController extends Controller
                     'placeholder' => 'Please, write password of new branch'
                 ]
             ],
-            'selects' => 
+            'selects' =>
             [
                 [
                     'label' => 'Branch',
